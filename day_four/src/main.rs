@@ -1,8 +1,11 @@
+/**
+This is entirely overkill, and I shouldn't have used a parser 😅
+**/
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
 
-use pest::iterators::Pairs;
+use pest::iterators::{Pair, Pairs};
 use pest::Parser;
 use std::fs::read_to_string;
 use std::ops::RangeInclusive;
@@ -13,16 +16,47 @@ pub struct InputParser;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let file = read_to_string("../input/day_four.txt")?;
-    let mut input = InputParser::parse(Rule::file, &file).unwrap();
+    let input = InputParser::parse(Rule::file, &file).unwrap();
 
-    let valid = part_one(&mut input.clone());
+    let valid = part_one_remix(input.clone());
+    println!("part one remix: {:?}", valid);
+
+    let valid = part_one(input.clone());
     println!("{:?}", valid);
-    let valid = part_two(&mut input.clone());
+    let valid = part_two(input.clone());
     println!("{:?}", valid);
     Ok(())
 }
 
-fn part_one(inputs: &mut Pairs<Rule>) -> i32 {
+fn part_one_remix(inputs: Pairs<Rule>) -> usize {
+    inputs
+        .filter(|passport| passport.as_rule() == Rule::passport)
+        .filter(|passport| {
+            passport
+                .clone()
+                .into_inner()
+                .flat_map(|record| {
+                    record
+                        .clone()
+                        .into_inner()
+                        .filter(|key_value| key_value.as_rule() == Rule::key)
+                })
+                .filter(|key| {
+                    println!("{:?}", key);
+                    key.as_str() != "cid"
+                })
+                .count()
+                == 7
+            // .filter(|key| key.as_str() != "cid")
+            // .count()
+            // == 7
+            // true
+            // count
+        })
+        .count()
+}
+
+fn part_one(inputs: Pairs<Rule>) -> i32 {
     let mut valid_passports = 0;
     for passport in inputs {
         match passport.as_rule() {
@@ -44,7 +78,7 @@ fn part_one(inputs: &mut Pairs<Rule>) -> i32 {
     valid_passports
 }
 
-fn part_two(inputs: &mut Pairs<Rule>) -> i32 {
+fn part_two(inputs: Pairs<Rule>) -> i32 {
     let mut valid_passports = 0;
 
     for passport in inputs {
