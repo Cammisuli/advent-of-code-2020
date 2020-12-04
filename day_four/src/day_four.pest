@@ -1,0 +1,5 @@
+value = { ("#" | ASCII_ALPHA | ASCII_DIGIT)+ }
+key = { (ASCII_ALPHA)+ }
+record = { key ~ ":" ~ value }
+passport = { (record ~ (WHITE_SPACE)?)+ }
+file = _{ SOI ~ (passport ~ (NEWLINE)*)+ ~ EOI}

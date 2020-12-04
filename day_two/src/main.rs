@@ -52,7 +52,7 @@ fn part_two() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn inputs() -> Result<Vec<InputLine>, Box<dyn Error>> {
-    let file = read_to_string("input/day_two.txt")?;
+    let file = read_to_string("../input/day_two.txt")?;
     let input = file
         .lines()
         .map(|x| {
@@ -81,6 +81,11 @@ fn inputs() -> Result<Vec<InputLine>, Box<dyn Error>> {
         .collect::<Vec<_>>();
 
     Ok(input)
+}
+
+fn main() {
+    part_one().unwrap();
+    part_two().unwrap();
 }
 
 #[cfg(test)]

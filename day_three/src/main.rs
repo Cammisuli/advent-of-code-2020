@@ -1,5 +1,12 @@
 use std::fs::read_to_string;
 
+fn main() {
+    let part_one = part_one().unwrap();
+    let part_two = part_two().unwrap();
+
+    println!("part one: {} \npart two: {}", part_one, part_two)
+}
+
 fn part_one() -> Result<u32, Box<dyn std::error::Error>> {
     let input = inputs()?;
     let trees = count_trees(&input, 3, 1);
@@ -30,7 +37,7 @@ fn count_trees(slopes: &Vec<String>, right: usize, down: usize) -> u32 {
 }
 
 fn inputs() -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let file = read_to_string("input/day_three.txt")?;
+    let file = read_to_string("../input/day_three.txt")?;
     Ok(file.lines().map(|s| s.to_owned()).collect())
 }
 
