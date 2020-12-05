@@ -15,7 +15,7 @@ use std::ops::RangeInclusive;
 pub struct InputParser;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let file = read_to_string("../input/day_four.txt")?;
+    let file = read_to_string("input/day_four.txt")?;
     let input = InputParser::parse(Rule::file, &file).unwrap();
 
     let valid = part_one_remix(input.clone());

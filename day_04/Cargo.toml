@@ -1,5 +1,5 @@
 [package]
-name = "day_four"
+name = "day_04"
 version = "0.1.0"
 authors = ["Jonathan Cammisuli <jon@cammisuli.ca>"]
 edition = "2018"
