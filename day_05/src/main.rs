@@ -1,5 +1,3 @@
-use std::fs::read_to_string;
-
 fn main() {
     let input = inputs().unwrap();
 
@@ -11,7 +9,7 @@ fn main() {
 }
 
 fn inputs() -> Result<Vec<usize>, Box<dyn std::error::Error>> {
-    let inputs = read_to_string("input/day_five.txt")?
+    let inputs = include_str!("input.txt")
         .lines()
         .map(|line| {
             line.replace(&['F', 'L'][..], "0")

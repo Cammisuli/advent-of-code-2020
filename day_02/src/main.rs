@@ -1,5 +1,4 @@
 use std::error::Error;
-use std::fs::read_to_string;
 
 #[derive(Debug)]
 struct InputLine {
@@ -40,8 +39,8 @@ fn part_two() -> Result<(), Box<dyn std::error::Error>> {
         );
 
         match min_max {
-            (Some(&min), None) => passwords.push(&input_line.value),
-            (None, Some(&max)) => passwords.push(&input_line.value),
+            (Some(&_min), None) => passwords.push(&input_line.value),
+            (None, Some(&_max)) => passwords.push(&input_line.value),
             _ => {}
         }
     }
@@ -52,7 +51,7 @@ fn part_two() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn inputs() -> Result<Vec<InputLine>, Box<dyn Error>> {
-    let file = read_to_string("../input/day_two.txt")?;
+    let file = include_str!("input.txt");
     let input = file
         .lines()
         .map(|x| {

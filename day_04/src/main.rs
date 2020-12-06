@@ -1,9 +1,8 @@
 use itertools::Itertools;
 use std::collections::HashMap;
-use std::fs::read_to_string;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let file = read_to_string("input/day_four.txt")?;
+    let file = include_str!("input.txt");
     let passports = file
         .split("\n\n")
         .filter_map(parse_passport)

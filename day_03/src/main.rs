@@ -1,5 +1,3 @@
-use std::fs::read_to_string;
-
 fn main() {
     let part_one = part_one().unwrap();
     let part_two = part_two().unwrap();
@@ -37,7 +35,7 @@ fn count_trees(slopes: &Vec<String>, right: usize, down: usize) -> u32 {
 }
 
 fn inputs() -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let file = read_to_string("../input/day_three.txt")?;
+    let file = include_str!("input.txt");
     Ok(file.lines().map(|s| s.to_owned()).collect())
 }
 

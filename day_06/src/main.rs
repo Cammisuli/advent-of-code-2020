@@ -1,7 +1,5 @@
 use itertools::Itertools;
-use std::collections::{HashMap, HashSet};
-use std::fs::read_to_string;
-use std::iter::FromIterator;
+use std::collections::HashSet;
 
 fn main() {
     let inputs = inputs();
@@ -32,8 +30,7 @@ fn main() {
 }
 
 fn inputs() -> Vec<String> {
-    read_to_string("../input/day_06.txt")
-        .unwrap()
+    include_str!("input.txt")
         .split("\n\n")
         .map(|s| s.to_owned())
         .collect()
