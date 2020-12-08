@@ -1,0 +1,5 @@
+bag_name = { (ALPHABETIC | WHITE_SPACE)+ }
+bag_quantity = { (DECIMAL_NUMBER)+ }
+bag_content = { (bag_quantity) ~ (bag_name) ~ ("," | ".")}
+main = { (bag_name) ~ "bags contain" ~ (bag_content)+ }
+bags = { SOI ~ (main) ~ (NEWLINE) ~ EOI }
