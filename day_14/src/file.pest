@@ -1,0 +1,9 @@
+mask = { ( '0'..'1' | "X")+ }
+mask_query = _{ "mask = " ~ mask }
+mem_address = { ASCII_DIGIT+ }
+mem_value = { ASCII_DIGIT+ }
+mem_address_query = _{ "mem[" ~ (mem_address)+ ~ "]" }
+mem_value_query = _{ " = " ~ (mem_value)+ }
+mem = { mem_address_query ~ mem_value_query }
+memory = { (mask_query ~ NEWLINE ~ (mem ~ NEWLINE?)+) }
+file = { SOI ~ (memory ~ NEWLINE?)+ ~ EOI }
